@@ -130,6 +130,7 @@ func (conn *streamConn) readStream(resp *http.Response) {
             if conn.stream != nil {
                 var tweet Tweet
                 json.Unmarshal(line, &tweet)
+                tweet.Json = string(line)
                 if tweet.Id != 0 {
                     conn.stream <- &tweet
                 }
